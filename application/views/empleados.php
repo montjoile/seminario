@@ -9,7 +9,7 @@
                     <div class="col-lg-12">
                         <h1 class="page-header">
                             Empleados <a href="<?php echo site_url('Empleados/add_empleados')?>"><i class="fa fa-fw fa-bar-chart-o"></i> ingresar Empleados</a>
-                            
+                        </h1>
 <?php
 /*echo form_label('Employee Email-ID');
 
@@ -85,7 +85,7 @@ echo form_open("");
 </table>
 
 
-                        </h1>
+                        
                         <ol class="breadcrumb">
                             <li class="active">
                                 <i class="fa fa-dashboard"></i> Dashboard

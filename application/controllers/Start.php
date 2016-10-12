@@ -50,4 +50,62 @@ $data['query'] = $this->Empleados_model->get_search();
     	$this->load->view('empleados', $data);
     	$this->load->view('js_plugins');
  	}
+
+
+ 	function requerir_empleados(){
+ 		$this->load->helper('url');
+ 		$this->load->helper('form');
+ 		$this->load->model('Empleados_model');
+ 		$this->load->model('Genero_model');
+ 		$this->load->model('Profesion_model');
+ 		$this->load->model('Pais_model');
+
+
+ 		$data['genero'] = $this->Genero_model->getGenero();
+ 		$data['profesion'] = $this->Profesion_model->getProfesion();
+ 		$data['pais'] = $this->Pais_model->getPais();
+
+
+ 		//load views:
+ 		$this->load->view('head');
+		$this->load->view('navbar');
+		$this->load->view('menu');
+    	$this->load->view('reqEmpleados_view', $data);
+    	$this->load->view('js_plugins');
+
+ 	}
+
+
+
+ 	function gestionar_empleados(){
+ 		$this->load->helper('url');
+ 		$this->load->helper('form');
+ 		$this->load->library('session');
+ 		$this->load->model('Empleador_model');
+ 		$this->load->model('Empleados_model');
+ 		$this->load->model('Contrato_model');
+
+
+ 		$usuario_id = $this->session->userdata('user');
+ 		$data['empresa'] = $this->Empleador_model->getEmpresaId($usuario_id);
+		$empresaid = $data['empresa'][0]->empresa_id;
+		$data['contratos'] = $this->Contrato_model->getEmpleadobyEmpresa($empresaid);
+
+		$empleados = array();
+		foreach ($data['contratos'] as $item) {
+			$empleados[] = $item->empleado_id;
+		}
+		$data['empleados'] = $this->Empleados_model->getEmpleadosbyID($empleados);
+
+ 		$this->load->view('head');
+		$this->load->view('navbar');
+		$this->load->view('menu');
+    	$this->load->view('gestionarEmpleados_view', $data);
+    	$this->load->view('js_plugins');
+
+
+
+ 	}
+
+
 }

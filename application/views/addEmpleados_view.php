@@ -83,7 +83,7 @@ echo form_open("");
 
 <?php
     echo form_label('Genero') . '<br />';
-    foreach($groups as $row ){
+    foreach($genero as $row ){
         $array[$row['id']] = $row['descripcion'];
     }
     echo form_dropdown('dgenero',  $array, 'class=form-control');

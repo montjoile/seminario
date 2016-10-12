@@ -8,7 +8,7 @@
                         <a href="<?php echo site_url('start/empleados')?>"><i class="fa fa-fw fa-bar-chart-o"></i> Empleados</a>
                     </li>
                     <li>
-                        <a href="tables.html"><i class="fa fa-fw fa-table"></i> Tables</a>
+                        <a href="<?php echo site_url('start/gestionar_empleados')?>"><i class="fa fa-fw fa-table"></i> Gestionar Empleados</a>
                     </li>
                     <li>
                         <a href="forms.html"><i class="fa fa-fw fa-edit"></i> Forms</a>

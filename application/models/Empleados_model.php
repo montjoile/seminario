@@ -122,6 +122,41 @@ $this->db->insert('empleado', $data);
 
 
 
+function getEmpleadobyEmpresa($empresaid){
+
+}
+
+
+
+
+
+  function listEmpleadosbyEmpresa($empresaid){
+    $this->db->select('id, nombre, apellidos, status_id, profesion_id');
+    $this->db->from('empleado');
+    $this->db->where('empresa',$empresaid);
+    //$this->db->limit(1);
+    $query = $this->db->get();
+
+    return $query->result();
+  }
+
+
+  function getEmpleadosbyID($empleados){
+    //$this->db->select('e.nombre, e.apellidos, p.descripcion, c.fecha_contrato, c.fecha_vigencia,c.salario from empleado e, profesion p, contrato c
+     // where e.profesion_id = p.id and 
+     // c.empleado_id = e.id');
+
+    $this->db->select('e.nombre as nombre, e.apellidos as apellidos, p.descripcion as profesion, c.fecha_contrato as fecha_contrato, c.fecha_vigencia as fecha_vigencia, c.salario as salario');
+    $this->db->from('empleado e, profesion p, contrato c');
+    $this->db->where('e.profesion_id = p.id');
+    $this->db->where('c.empleado_id = e.id');
+    $this->db->where_in('e.id', $empleados);
+    $query = $this->db->get();
+    return $query->result();
+  }
+
+
+
 }
 
 

@@ -17,6 +17,9 @@ $this->load->helper('url');
 		$this->load->view('menu');
 		$this->load->view('start');
 		$this->load->view('js_plugins');
+
+
+
 	}
 
 	function add_empleados(){
@@ -24,8 +27,10 @@ $this->load->helper('url');
 		$this->load->model('Genero_model');
 		$this->load->model('Profesion_model');
 		$this->load->model('Pais_model');
+
+		
  
-$data['groups'] = $this->Genero_model->getGenero();
+$data['genero'] = $this->Genero_model->getGenero();
 $data['profesion'] = $this->Profesion_model->getProfesion();
 $data['pais'] = $this->Pais_model->getPais();
 	//	$this->load->helper('url');
@@ -77,7 +82,7 @@ if ($this->form_validation->run() == FALSE) {
     	$this->load->view('js_plugins');
 } else {
 //Setting values for table columns
-$data = array(
+$data_bd = array(
 'nombre' => $this->input->post('dname'),
 'apellidos' => $this->input->post('dapellidos'),
 'direccion' => $this->input->post('ddireccion'),
@@ -98,7 +103,7 @@ $data = array(
 //$this->Empleados_model->insert_empleado($data);
 
 
-$this->Empleados_model->insert_empleado($data);
+$this->Empleados_model->insert_empleado($data_db);
 $data['message'] = 'Data Inserted Successfully';
 //Loading View
 		$this->load->view('head');
@@ -111,21 +116,17 @@ $data['message'] = 'Data Inserted Successfully';
 
 
 
-function validate_dropdown($str)
-    {
-        if ($str == '-CHOOSE-')
-        {
-            $this->form_validation->set_message('validate_dropdown', 'Please choose a valid %s');
-            return FALSE;
-        }
-        else
-        {
-            return TRUE;
-        }
-    }
-
-
-
-
  	}
+
+
+
+
+
+
+
+
+
+
+
+
 }
