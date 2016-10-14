@@ -2,7 +2,7 @@
             <div class="collapse navbar-collapse navbar-ex1-collapse">
                 <ul class="nav navbar-nav side-nav">
                     <li class="active">
-                        <a href="index.html"><i class="fa fa-fw fa-dashboard"></i> Dashboard</a>
+                        <a href="<?php echo site_url('start')?>"><i class="fa fa-fw fa-dashboard"></i> Dashboard</a>
                     </li>
                     <li>
                         <a href="<?php echo site_url('start/empleados')?>"><i class="fa fa-fw fa-bar-chart-o"></i> Empleados</a>
@@ -11,10 +11,10 @@
                         <a href="<?php echo site_url('start/gestionar_empleados')?>"><i class="fa fa-fw fa-table"></i> Gestionar Empleados</a>
                     </li>
                     <li>
-                        <a href="forms.html"><i class="fa fa-fw fa-edit"></i> Forms</a>
+                        <a href="<?php echo site_url('start/generar_factura')?>"><i class="fa fa-fw fa-edit"></i> Generar Factura</a>
                     </li>
                     <li>
-                        <a href="bootstrap-elements.html"><i class="fa fa-fw fa-desktop"></i> Bootstrap Elements</a>
+                        <a href="<?php echo site_url('start/requerir_empleados')?>"><i class="fa fa-fw fa-desktop"></i> Requisicion de personal</a>
                     </li>
                     <li>
                         <a href="bootstrap-grid.html"><i class="fa fa-fw fa-wrench"></i> Bootstrap Grid</a>

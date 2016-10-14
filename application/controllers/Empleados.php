@@ -124,6 +124,37 @@ $data['message'] = 'Data Inserted Successfully';
 
 
 
+ 	function requerir_empleados(){
+ 		$this->load->model('Empleados_model');
+		$this->load->model('Genero_model');
+		$this->load->model('Profesion_model');
+		$this->load->model('Pais_model');
+		$this->load->model('Puesto_model');
+
+		/*$data_bd = array(
+'nombre' => $this->input->post('dname'),
+'apellidos' => $this->input->post('dapellidos'),*/
+
+ 	}
+
+
+
+
+ 	function detalle_empleado($id = 0){
+		$data['id'] =  $this->uri->segment(3);
+
+		//traer toda la info del empleado + contrato
+		//boton para generar factura por empleado
+
+
+
+		$this->load->view('head');
+		$this->load->view('navbar');
+		$this->load->view('menu');
+    	$this->load->view('detalleEmpleado_view', $data);
+    	$this->load->view('js_plugins');
+ 	}
+
 
 
 

@@ -146,7 +146,7 @@ function getEmpleadobyEmpresa($empresaid){
      // where e.profesion_id = p.id and 
      // c.empleado_id = e.id');
 
-    $this->db->select('e.nombre as nombre, e.apellidos as apellidos, p.descripcion as profesion, c.fecha_contrato as fecha_contrato, c.fecha_vigencia as fecha_vigencia, c.salario as salario');
+    $this->db->select('e.id as id, e.nombre as nombre, e.apellidos as apellidos, p.descripcion as profesion, c.fecha_contrato as fecha_contrato, c.fecha_vigencia as fecha_vigencia, c.salario as salario');
     $this->db->from('empleado e, profesion p, contrato c');
     $this->db->where('e.profesion_id = p.id');
     $this->db->where('c.empleado_id = e.id');
@@ -154,6 +154,25 @@ function getEmpleadobyEmpresa($empresaid){
     $query = $this->db->get();
     return $query->result();
   }
+
+
+
+  function getEmpleadosbyReq($req_empleado){
+    $this->db->select('id, nombre, apellidos,telefono1, telefono2, celular, direccion, email, pretension_salarial');
+    $this->db->from('empleado');
+    $this->db->where('status_id = 2');
+    $this->db->where('genero_id', $req_empleado['genero']);
+    $this->db->where('profesion_id', $req_empleado['profesion']);
+    $this->db->where('pais_residencia', $req_empleado['pais']);
+    $this->db->where('nivel_estudio_max', $req_empleado['nivel_estudios']);
+   // $this->db->where('puesto_id');
+
+    //$this->db->where('')
+    $query = $this->db->get();
+    return $query->result();
+
+  }
+
 
 
 

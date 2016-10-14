@@ -1,0 +1,6 @@
+holis
+
+<?php
+echo $id;
+
+?>

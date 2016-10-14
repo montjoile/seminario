@@ -52,3 +52,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 $route['default_controller'] = 'start';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
+
+
+$route['index.php/start/Empleados/detalle_empleado/(:num)'] = "index.php/start/detalle_empleado/$1";
