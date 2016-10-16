@@ -12,3 +12,10 @@ tcpdf:
 		- ganancias por empleado, por mes, por empresa contratante
 		- generacion de factura por empleado
 
+
+generar factura:
+	campo para ingreso de nombre y droplist para escoger mes a facturar. se
+	busca el empleado y se genera pdf con factura
+	lista de empleados contratados y cheque para emitir factura del mes
+
+

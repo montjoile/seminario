@@ -109,47 +109,47 @@ define ('PDF_AUTHOR', 'TCPDF');
 /**
  * Header title.
  */
-define ('PDF_HEADER_TITLE', 'TCPDF Example');
+define ('PDF_HEADER_TITLE', 'Sistema de Outsourcing de Personal');
 
 /**
  * Header description string.
  */
-define ('PDF_HEADER_STRING', "by Nicola Asuni - Tecnick.com\nwww.tcpdf.org");
+define ('PDF_HEADER_STRING', "Proyecto de Seminario 2016");
 
 /**
  * Document unit of measure [pt=point, mm=millimeter, cm=centimeter, in=inch].
  */
-define ('PDF_UNIT', 'mm');
+//define ('PDF_UNIT', 'mm');
 
 /**
  * Header margin.
  */
-define ('PDF_MARGIN_HEADER', 5);
+define ('PDF_MARGIN_HEADER', 0);
 
 /**
  * Footer margin.
  */
-define ('PDF_MARGIN_FOOTER', 10);
+define ('PDF_MARGIN_FOOTER', 0);
 
 /**
  * Top margin.
  */
-define ('PDF_MARGIN_TOP', 27);
+define ('PDF_MARGIN_TOP', 0);
 
 /**
  * Bottom margin.
  */
-define ('PDF_MARGIN_BOTTOM', 25);
+define ('PDF_MARGIN_BOTTOM', 0);
 
 /**
  * Left margin.
  */
-define ('PDF_MARGIN_LEFT', 15);
+define ('PDF_MARGIN_LEFT', 0);
 
 /**
  * Right margin.
  */
-define ('PDF_MARGIN_RIGHT', 15);
+define ('PDF_MARGIN_RIGHT', 0);
 
 /**
  * Default main font name.
@@ -159,7 +159,7 @@ define ('PDF_FONT_NAME_MAIN', 'helvetica');
 /**
  * Default main font size.
  */
-define ('PDF_FONT_SIZE_MAIN', 10);
+define ('PDF_FONT_SIZE_MAIN', 0);
 
 /**
  * Default data font name.
@@ -169,32 +169,32 @@ define ('PDF_FONT_NAME_DATA', 'helvetica');
 /**
  * Default data font size.
  */
-define ('PDF_FONT_SIZE_DATA', 8);
+define ('PDF_FONT_SIZE_DATA', 2);
 
 /**
  * Default monospaced font name.
  */
-define ('PDF_FONT_MONOSPACED', 'courier');
+//define ('PDF_FONT_MONOSPACED', 'courier');
 
 /**
  * Ratio used to adjust the conversion of pixels to user units.
  */
-define ('PDF_IMAGE_SCALE_RATIO', 1.25);
+//define ('PDF_IMAGE_SCALE_RATIO', 1.25);
 
 /**
  * Magnification factor for titles.
  */
-define('HEAD_MAGNIFICATION', 1.1);
+//define('HEAD_MAGNIFICATION', 1.1);
 
 /**
  * Height of cell respect font height.
  */
-define('K_CELL_HEIGHT_RATIO', 1.25);
+//define('K_CELL_HEIGHT_RATIO', 1.25);
 
 /**
  * Title magnification respect main font size.
  */
-define('K_TITLE_MAGNIFICATION', 1.3);
+//define('K_TITLE_MAGNIFICATION', 1.3);
 
 /**
  * Reduction factor for small font.

@@ -97,7 +97,7 @@ return $this->table->generate();
 
 
 function get_search() {
-  $match = $this->input->post('searchd');
+  $match = $this->input->post('search');
   $this->db->like('nombre',$match);
   $this->db->or_like('apellidos',$match);
   //$this->db->or_like(‘characters’,$match);
@@ -154,6 +154,33 @@ function getEmpleadobyEmpresa($empresaid){
     $query = $this->db->get();
     return $query->result();
   }
+
+
+
+  function getEmpleadofromEmpresabyNombre($empleados){
+    if(empty($this->input->post('search')))
+       return array();
+
+    $match = $this->input->post('search');
+   $this->db->select('e.id as id, e.nombre as nombre, e.apellidos as apellidos, p.descripcion as profesion, c.id as contrato, c.fecha_contrato as fecha_contrato, c.fecha_vigencia as fecha_vigencia, c.salario as salario');
+    $this->db->from('empleado e, profesion p, contrato c');
+   // $this->db->where('e.profesion_id = p.id');
+    $this->db->where('c.empleado_id = e.id');
+    $this->db->where_in('e.id IN e.id as id, e.nombre as nombre, e.apellidos as apellidos, p.descripcion as profesion, c.id as contrato, c.fecha_contrato as fecha_contrato, c.fecha_vigencia as fecha_vigencia, c.salario as salario', NULL, FALSE);
+    $this->db->like('e.nombre',$match);
+    $this->db->or_like('e.apellidos',$match);
+    $this->db->group_by('id'); 
+
+    //$this->db->group_by('id'); 
+    //$this->db->or_like(‘characters’,$match);
+    //$this->db->or_like(‘synopsis’,$match);
+    $query = $this->db->get();
+    return $query->result();
+  }
+
+
+
+
 
 
 
