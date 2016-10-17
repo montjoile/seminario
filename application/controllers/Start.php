@@ -178,6 +178,10 @@ $data['empleados'] = array(
 }
 
 
+
+
+
+
  	function gestionar_empleados(){
  		$this->load->helper('url');
  		$this->load->helper('form');

@@ -10,6 +10,7 @@ class Signup extends CI_Controller {
 		$this->load->library(array('session', 'form_validation'));
 		$this->load->database();
 		$this->load->model('Usuario_model');
+        $this->load->model('Empleador_model');
         $this->load->model('Empleados_model');
 	}
 
@@ -46,10 +47,12 @@ $this->form_validation->set_rules('demail', 'Email', 'required|valid_email|is_un
                 'status_id' => 2
             );
 
-            if ($this->Usuario_model->insert_usuario($data)){
+            $result = $this->Usuario_model->insert_usuario($data);
+            if ($result != NULL){//$this->Usuario_model->insert_usuario($data)){
                 $this->session->set_flashdata('msg','<div class="alert alert-success text-center">You are Successfully Registered! Please login to access your Profile!</div>');
                 
                 //graba a tabla empleado
+                /*
                 if ($data['rol_id'] == 1){
                     $this->Empleados_model->insert_empleado(array(
                         'nombre' => $this->input->post('dnombre'),
@@ -59,7 +62,14 @@ $this->form_validation->set_rules('demail', 'Email', 'required|valid_email|is_un
                 }
 
                 //graba a tabla empresa
-                //......
+                elseif ($data['rol_id'] == 2){
+                    $this->Empleador_model->insert_empleador(array(
+                        'nombre' => $this->input->post('dnombre'),
+                        'apellidos' => $this->input->post('dapellidos'),
+                        'email' => $this->input->post('demail')//,
+                        //'usuario_id' => '24'//$usuario
+                    ));
+                }*/
 
 
 

@@ -63,7 +63,12 @@ return false;
 	// insert
 	function insert_usuario($data)
     {
-		return $this->db->insert('usuario', $data);
+		$result = $this->db->insert('usuario', $data);
+		/*$result = $this->db->query('SELECT max(id) FROM usuario');
+		$row = $result->result();
+		$id = (int) $row['id'];
+		return $id;*/
+		return $result;
 	}
 
 }

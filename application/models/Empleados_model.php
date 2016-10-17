@@ -141,6 +141,35 @@ function getEmpleadobyEmpresa($empresaid){
   }
 
 
+
+
+  function getEmpleadobyID($id){
+    $this->db->select('e.id as id, e.nombre as nombre, e.apellidos as apellidos, 
+e.telefono1, e.telefono2, e.celular, e.email, e.email2, e.direccion, e.nit, e.fecha_nacimiento, e.dpi, p.descripcion as profesion, e.pretension_salarial as pretension_salarial, g.descripcion as genero, es.descripcion as estado_civil,
+IFNULL(ELT(FIELD(hijos, 0, 1),"No","Si"), "Sin especificar") AS hijos, e.edad, nv.descripcion as nivel_estudios, pa.descripcion as pais_residencia');
+    $this->db->from('empleado e, profesion p, genero g, estado_civil es, nivel_estudios nv, pais pa');
+    $this->db->where('e.profesion_id = p.id');
+    $this->db->where('g.id = e.genero_id');
+    $this->db->where('es.id = e.estado_civil');
+    $this->db->where('nv.id = e.nivel_estudio_max');
+    $this->db->where('pa.id = e.pais_residencia');
+    $this->db->where('e.id', $id);
+    $query = $this->db->get();
+    return $query->result_array();//$query->result();
+  }
+
+
+
+
+  function contratarEmpleado($info){
+    //$this->db->
+    $result = $this->db->insert('contrato', $info);
+    return $result;
+  }
+
+
+
+
   function getEmpleadosbyID($empleados){
     //$this->db->select('e.nombre, e.apellidos, p.descripcion, c.fecha_contrato, c.fecha_vigencia,c.salario from empleado e, profesion p, contrato c
      // where e.profesion_id = p.id and 
@@ -187,7 +216,8 @@ function getEmpleadobyEmpresa($empresaid){
   function getEmpleadosbyReq($req_empleado){
     $this->db->select('id, nombre, apellidos,telefono1, telefono2, celular, direccion, email, pretension_salarial');
     $this->db->from('empleado');
-    $this->db->where('status_id = 2');
+    //$this->db->where('status_id = 2');
+    $this->db->where('status', 0);
     $this->db->where('genero_id', $req_empleado['genero']);
     $this->db->where('profesion_id', $req_empleado['profesion']);
     $this->db->where('pais_residencia', $req_empleado['pais']);
@@ -199,6 +229,11 @@ function getEmpleadobyEmpresa($empresaid){
     return $query->result();
 
   }
+
+
+
+
+
 
 
 

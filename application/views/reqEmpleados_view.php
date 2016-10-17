@@ -14,7 +14,7 @@
 
 
 
-<?php echo $e;//echo form_open('Start/requerir_empleados'); ?>
+<?php //echo $e;//echo form_open('Start/requerir_empleados'); ?>
 <form method="post" accept-charset="utf-8" action='requerir_empleados'>
 <?php if (isset($message)) { ?>
 <CENTER><h3 style="color:green;">Registro guardado con exito</h3></CENTER><br>
@@ -93,6 +93,9 @@
             echo "ffff";
             echo $empleados['genero'];
             echo $empleados['profesion']; }
+
+
+             <td><input type="checkbox" value="$item->id"></td>
         */?>
 
 <?php if (isset($empleados)){ ?>
@@ -106,7 +109,7 @@
     <td><?= $item->email ?></td>
     <td><?= $item->direccion ?></td>
     <td><?= $item->pretension_salarial ?></td>
-    <td><input type="checkbox" value="$item->id"></td>
+   
     <td><a href="<?php echo site_url('Empleados/detalle_empleado').'/'.$item->id ?>"><i class="fa fa-search-plus" aria-hidden="true" alt="Ver informacion del empleado"></i></a></td>
     </tr>
     <?php endforeach;?>
@@ -115,11 +118,43 @@
 <?php } ?>
 
 
+
+
+
+
+
+<?php /*
+if (isset($empleados)){ 
+    echo form_open("Empleados/detalle_empleado/"$emplea);
+
+    foreach($empleados as $empleado){
+        $atributes = array(        
+                            'name'      => 'dempleado',
+                            'id'        => 'dempleado',
+                            'value'     => $empleado->id,
+                            'readonly'  => 'readonly'
+                            );
+        echo form_hidden($atributes);
+
+        $atributes = array(        
+                            'name'      => 'dnombre',
+                            'id'        => 'dnombre',
+                            'value'     => $empleado->nombre .' ' . $empleado->apellidos,
+                            //'maxlength' => '30',
+                            //'size'      => '30',
+                            //'style'     => 'width:30%',
+                            'readonly'  => 'readonly'
+                            );
+        echo form_input($atributes);
        
+        echo "<input type=submit value='Contratar' />";
+    }
+}
 
+    echo form_close();
 
-
-
+*/
+?>
 
 
                       

@@ -22,6 +22,15 @@ class Empleador_model extends CI_Model {
 
 
 
+    function insert_empleador($data){
+        //$usuario_id = $usuario;
+       // $email = $email;
+        //$nombre=$this->input->post('nombre');
+        //$apellidos=$this->input->post('apellidos');
+        $this->db->insert('empleador', $data);
+    }
+
+
 
 
 }

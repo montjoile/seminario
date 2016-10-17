@@ -141,12 +141,18 @@ $data['message'] = 'Data Inserted Successfully';
 
 
  	function detalle_empleado($id = 0){
-		$data['id'] =  $this->uri->segment(3);
+ 		$this->load->helper('form');
+ 		$this->load->model('Empleados_model');
+
+		$id =  $this->uri->segment(3);
 
 		//traer toda la info del empleado + contrato
 		//boton para generar factura por empleado
+		//contrato
 
 
+		$empleados = $this->Empleados_model->getEmpleadobyID($id);
+		$data['empleados'] = $empleados;
 
 		$this->load->view('head');
 		$this->load->view('navbar');
@@ -154,6 +160,85 @@ $data['message'] = 'Data Inserted Successfully';
     	$this->load->view('detalleEmpleado_view', $data);
     	$this->load->view('js_plugins');
  	}
+
+
+
+ 	function contratar_empleado(){
+ 		$this->load->library(array('session', 'form_validation'));
+ 		$this->load->helper('url');
+ 		$this->load->helper('form');
+ 		$this->load->model('Empleados_model');
+ 		$this->load->model('Empleador_model');
+ 		$this->load->model('Contrato_model');
+
+ 		//obtener id de empresa relacionado al usuario empleador 
+ 		//obtener fecha actual
+ 		//trigger para actualizar status de empleado a contratado
+
+ 		$usuario_id = $this->session->userdata('user');
+ 		$data['empresa'] = $this->Empleador_model->getEmpresaId($usuario_id);
+		$empresaid = $data['empresa'][0]->empresa_id;
+		$empleado_id = $this->input->post('dempleado');
+
+ 		$info = array(
+ 			'empleado_id' => $this->input->post('dempleado'),
+ 			'empresa_id'  => $empresaid//,
+ 		//	'fecha_contrato' => 'CURDATE()',
+ 		//	'fecha_vigencia' => $this->input->post('dfvigencia'),
+ 		//	'salario'        => $this->input->post('dsalario')
+ 		);
+
+
+ 		$result = $this->Empleados_model->contratarEmpleado($info);
+
+ 		if ($result != NULL){//$this->Usuario_model->insert_usuario($data)){
+            $msg = '<div class="alert alert-success text-center">You are Successfully Registered! Please login to access your Profile!</div>';
+            //$this->session->set_flashdata('msg','<div class="alert alert-success text-center">You are Successfully Registered! Please login to access your Profile!</div>');
+
+            redirect('Empleados/detalle_empleado/'.$empleado_id);
+	 		/*$this->load->view('head');
+			$this->load->view('navbar');
+			$this->load->view('menu');
+	    	$this->load->view('detalleEmpleado_view', $msg);
+	    	$this->load->view('js_plugins');*/
+	    }
+	    else{
+	    	$msg = '<div class="alert alert-danger text-center">Oops! Error.  Please try again later!!!</div>';
+	 		redirect('Empleados/detalle_empleado/'.$empleado_id);
+	 		/*$this->load->view('head');
+			$this->load->view('navbar');
+			$this->load->view('menu');
+	    	$this->load->view('detalleEmpleado_view', $msg);
+	    	$this->load->view('js_plugins');*/
+	    }
+
+ 	}
+
+
+
+
+
+	/*function verDetalle_empleado(){
+		$this->load->helper('url');
+ 		$this->load->helper('form');
+ 		$this->load->library('form_validation');
+
+		//if($_SERVER['REQUEST_METHOD'] == "POST"){
+			$data['empleados'] = array(
+				'id' => $this->input->post('dempleado')
+				);
+			
+		//data['empleados'] = $this->Empleados_model->getEmpleadosbyReq($req_empleado);
+			//$data['empleados'] = $empleado;
+
+		$this->load->view('head');
+				$this->load->view('navbar');
+				$this->load->view('menu');
+		    	$this->load->view('detalleEmpleado_view', $data);
+		    	$this->load->view('js_plugins');
+		//} 
+
+	}*/
 
 
 

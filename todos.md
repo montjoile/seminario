@@ -1,6 +1,16 @@
 ##TODOs##
 
 
+a;adir empleado sin contratar para pruebas!!!!
+
+empleados/contratar_empleado:
+	verificar porque no se envia id si es form_hidden
+
+	boton para imprimir contrato
+
+
+
+
 req_empleado:	
 	crear formulario para despliegue de empleados que hacen match
 	llenar formulario desde array de bd result
