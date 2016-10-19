@@ -8,16 +8,14 @@
                 <div class="row">
                     <div class="col-lg-12">
                         <h1 class="page-header">
-                            Empleados <a href="<?php echo site_url('Empleados/add_empleados')?>"><i class="fa fa-fw fa-bar-chart-o"></i> Gestionar Empleados</a></h1>
+                            Gestionar Empleados 
+                        </h1>
 
 
   <div class="form-group">  
 
 
-<?php form_open('books/search');?>
-<?php $search = array('name'=>'search','id'=>'search','value'=>'',);?>
-<?=form_input($search);?><input type=submit value='Search' /></p>
-<?=form_close();?>
+
 <table>
 <tr><th>Nombre</th><th>Profesion</th><th>Fecha de contrato</th><th>Fecha de vigencia</th><th>Salario</th><th></th></tr>
 <?php foreach($empleados as $empleado):?>

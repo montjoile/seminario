@@ -13,23 +13,25 @@
                         
 
 
-
-<?php //echo $e;//echo form_open('Start/requerir_empleados'); ?>
+<?php echo $this->session->flashdata('msg'); ?>    
 
 <?php //var_dump($empleados); 
-if (isset($msg)) { //echo $msg; ?>
-<CENTER><h3 style="color:green;">Registro guardado con exito</h3></CENTER><br>
-<?php } ?>
+/*if (isset($msg)) { //echo $msg; 
+echo '<CENTER><h3 style="color:green;">Registro guardado con exito</h3></CENTER><br>';
+ }*/ ?>
 
 
 
-<?php //echo $id;?>
+<?php if (isset($empleados)){
 
-
-<?php if (isset($empleados)){?>
-<?php	echo form_open("Empleados/contratar_empleado/");
+    echo form_open("Empleados/contratar_empleado/", "class='form-horizontal'");
 
     foreach($empleados as $empleado){
+
+        echo '<div class="form-group">
+                <label class="col-sm-2 control-label">ID</label>
+                    <div class="col-sm-10">';
+
         $atributes = array(        
                             'name'      => 'dempleado',
                             'id'        => 'dempleado',
@@ -38,33 +40,144 @@ if (isset($msg)) { //echo $msg; ?>
                             );
         echo form_input($atributes);
 
-       
+
+        echo '</div></div>';
+        echo '<div class="form-group">';
+        echo '<label class="col-sm-2 control-label">Nombre</label>
+                <div class="col-sm-10">';
+        
+
         $atributes = array(        
                             'name'      => 'dnombre',
                             'id'        => 'dnombre',
                             'value'     => $empleado['nombre'] .' ' . $empleado['apellidos'],
-                            //'maxlength' => '30',
-                            //'size'      => '30',
-                            //'style'     => 'width:30%',
                             'readonly'  => 'readonly'
                             );
         echo form_input($atributes);
 
+        echo '</div></div>';
+        echo '<div class="form-group">';
+        echo '<label class="col-sm-2 control-label">Telefono</label>
+                <div class="col-sm-10">';
 
         $atributes = array(        
                             'name'      => 'dtelefono1',
                             'id'        => 'dtelefono1',
                             'value'     => $empleado['telefono1'],
-                            //'maxlength' => '30',
-                            //'size'      => '30',
-                            //'style'     => 'width:30%',
                             'readonly'  => 'readonly'
                             );
         echo form_input($atributes);
 
+        echo '</div></div>';
+        echo '<div class="form-group">';
+        echo '<div class="col-sm-offset-2 col-sm-10">';
 
-       
-        echo "<input type=submit value='Contratar' />";
+
+
+
+    if (isset($contrato)){
+        echo '
+            </div></div>
+            <div class="span7">
+            <div class="panel panel-info" id="contratar_div">
+            <div class="panel-heading">
+            <h4> Contrato </h4>
+            <div class=" panel-body ">
+
+
+            <div class="form-group">
+            <label class="col-sm-2 control-label">Fecha de Contrato</label>
+                            <div class="col-sm-10">
+
+            <input type="date" name="dfvigencia" id="dfvigencia" value='. $contrato[0]['fecha_contrato'] .'/>
+
+            </div></div>
+            <div class="form-group">
+            <label class="col-sm-2 control-label">Fecha de Vigencia</label>
+                            <div class="col-sm-10">
+
+            <input type="date" name="dfvigencia" id="dfvigencia" value='. $contrato[0]['fecha_vigencia'] .'/>
+
+            </div></div>
+            <div class="form-group">
+            <label class="col-sm-2 control-label">Puesto</label>
+                            <div class="col-sm-10">
+
+            <input type="text" name="dpuesto" id="dpuesto" value='. $contrato[0]['puesto'] .'/>
+
+            </div></div>
+            <div class="form-group">
+            <label class="col-sm-2 control-label">Salario</label>
+                            <div class="col-sm-10">
+
+            <input type="text" name="dsalario" id="dsalario" value='. $contrato[0]['salario'] .'/>
+
+            </div></div>
+            <div class="form-group">
+            <label class="col-sm-2 control-label">Observaciones</label>
+                            <div class="col-sm-10">
+
+            <textarea name="dobservaciones" id="dobservaciones" cols="40" rows="5">' . $contrato[0]['observaciones'] . '</textarea>
+
+
+            </div>
+            </div>
+            </div>
+            <input type=submit value="Imprimir Contrato" class="btn btn-default" />';
+        
+           // echo form_close();
+    }
+
+    else{
+
+
+echo '<a href="#" id="c_contratar" onclick="toggle_visibility'."('contratar_div')".';">Contratar</a>
+
+</div></div>
+<div class="span7">
+<div class="panel panel-info" id="contratar_div" style="display:none;">
+<div class="panel-heading">
+<h4> Contrato </h4>
+<div class=" panel-body ">
+
+
+<div class="form-group">
+<label class="col-sm-2 control-label">Fecha de Vigencia</label>
+                <div class="col-sm-10">
+
+<input type="date" name="dfvigencia" id="dfvigencia" placeholder="YYYY-MM-DD" />
+
+</div></div>
+<div class="form-group">
+<label class="col-sm-2 control-label">Puesto</label>
+                <div class="col-sm-10">
+
+<input type="text" name="dpuesto" id="dpuesto" />
+
+</div></div>
+<div class="form-group">
+<label class="col-sm-2 control-label">Salario</label>
+                <div class="col-sm-10">
+
+<input type="text" name="dsalario" id="dsalario" />
+
+</div></div>
+<div class="form-group">
+<label class="col-sm-2 control-label">Observaciones</label>
+                <div class="col-sm-10">
+
+<textarea name="dobservaciones" id="dobservaciones" cols="40" rows="5"></textarea>
+
+
+</div>
+</div>
+</div>
+<input type=submit value="Generar Contrato" class="btn btn-default" />';
+}
+
+
+
+
     }
 }
 
@@ -75,19 +188,6 @@ if (isset($msg)) { //echo $msg; ?>
 
 
 
-    <table>
-    <tr><th>Nombre</th><th>Telefono</th><th>Celular</th><th>Email</th><th>Direccion</th><td>Pretension Salarial</td><td>Contratar</td><td></td></tr>
-    
-    <?php foreach($empleados as $item): ?>
-    <tr>
-    <td><?= $item['nombre'] . " " . $item['apellidos'] ?></td>
-
-   
-    <td><a href="<?php echo site_url('Empleados/detalle_empleado').'/'.$item['id'] ?>"><i class="fa fa-search-plus" aria-hidden="true" alt="Ver informacion del empleado"></i></a></td>
-    </tr>
-    <?php endforeach;?>
-    </table>
-<?php //} ?>
 
 
 
@@ -117,3 +217,21 @@ if (isset($msg)) { //echo $msg; ?>
 </body>
 
 </html>
+
+
+<script type="text/javascript">
+<!--
+    function toggle_visibility(id) {
+       var e = document.getElementById(id);
+       var f = document.getElementById('c_contratar')
+       if(e.style.display == 'block'){
+            e.style.display = 'none';
+            f.style.display = 'none';
+        }
+       else{
+          e.style.display = 'block';
+          f.style.display = 'none';
+       }
+    }
+//-->
+</script>

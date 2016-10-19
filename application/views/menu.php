@@ -5,7 +5,10 @@
                         <a href="<?php echo site_url('start')?>"><i class="fa fa-fw fa-dashboard"></i> Dashboard</a>
                     </li>
                     <li>
-                        <a href="<?php echo site_url('start/empleados')?>"><i class="fa fa-fw fa-bar-chart-o"></i> Empleados</a>
+                        <a href="<?php echo site_url('start/empleados')?>"><i class="fa fa-fw fa-bar-chart-o"></i> Ver Empleados</a>
+                    </li>
+                    <li>
+                        <a href="<?php echo site_url('Empleados/add_empleados')?>"><i class="fa fa-fw fa-bar-chart-o"></i> Ingresar Empleados</a>
                     </li>
                     <li>
                         <a href="<?php echo site_url('start/gestionar_empleados')?>"><i class="fa fa-fw fa-table"></i> Gestionar Empleados</a>

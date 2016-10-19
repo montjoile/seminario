@@ -30,6 +30,8 @@ $this->load->helper('url');
 
 		
  
+
+ 
 $data['genero'] = $this->Genero_model->getGenero();
 $data['profesion'] = $this->Profesion_model->getProfesion();
 $data['pais'] = $this->Pais_model->getPais();
@@ -141,8 +143,10 @@ $data['message'] = 'Data Inserted Successfully';
 
 
  	function detalle_empleado($id = 0){
+ 		$this->load->library(array('session', 'form_validation'));
  		$this->load->helper('form');
  		$this->load->model('Empleados_model');
+ 		$this->load->model('Contrato_model');
 
 		$id =  $this->uri->segment(3);
 
@@ -153,6 +157,19 @@ $data['message'] = 'Data Inserted Successfully';
 
 		$empleados = $this->Empleados_model->getEmpleadobyID($id);
 		$data['empleados'] = $empleados;
+
+
+ 		//verificar si ya tiene contrato>
+ 		  //buscar id contrato por empleado
+ 		  //traer datos de contrato
+ 		$contrato = $this->Contrato_model->getContratobyEmpleadoID($id);
+ 		if ($contrato){
+ 			$datos = $this->Contrato_model->getContratobyID($contrato);
+ 			$data['contrato'] = $datos;
+ 		}
+
+
+
 
 		$this->load->view('head');
 		$this->load->view('navbar');
@@ -175,25 +192,28 @@ $data['message'] = 'Data Inserted Successfully';
  		//obtener fecha actual
  		//trigger para actualizar status de empleado a contratado
 
- 		$usuario_id = $this->session->userdata('user');
- 		$data['empresa'] = $this->Empleador_model->getEmpresaId($usuario_id);
-		$empresaid = $data['empresa'][0]->empresa_id;
-		$empleado_id = $this->input->post('dempleado');
+ 		$usuario_id        =  $this->session->userdata('user');
+ 		$data['empresa']   =  $this->Empleador_model->getEmpresaId($usuario_id);
+		$empresaid         =  $data['empresa'][0]->empresa_id;
+		$empleado_id       =  $this->input->post('dempleado');
+
 
  		$info = array(
- 			'empleado_id' => $this->input->post('dempleado'),
- 			'empresa_id'  => $empresaid//,
- 		//	'fecha_contrato' => 'CURDATE()',
- 		//	'fecha_vigencia' => $this->input->post('dfvigencia'),
- 		//	'salario'        => $this->input->post('dsalario')
+ 			'empleado_id'    =>  $this->input->post('dempleado'),
+ 			'empresa_id'     =>  $empresaid,
+ 			//'fecha_contrato' =>  'CURDATE()',
+ 			'fecha_vigencia' =>  $this->input->post('dfvigencia'),
+ 			'salario'        =>  $this->input->post('dsalario'),
+ 			'puesto'         =>  $this->input->post('dpuesto'),
+ 			'observaciones'  =>  $this->input->post('dobservaciones')  
  		);
 
 
  		$result = $this->Empleados_model->contratarEmpleado($info);
 
- 		if ($result != NULL){//$this->Usuario_model->insert_usuario($data)){
+ 		if ($result != NULL){
             $msg = '<div class="alert alert-success text-center">You are Successfully Registered! Please login to access your Profile!</div>';
-            //$this->session->set_flashdata('msg','<div class="alert alert-success text-center">You are Successfully Registered! Please login to access your Profile!</div>');
+            $this->session->set_flashdata('msg','<div class="alert alert-success text-center">You are Successfully Registered! Please login to access your Profile!</div>');
 
             redirect('Empleados/detalle_empleado/'.$empleado_id);
 	 		/*$this->load->view('head');
@@ -204,6 +224,7 @@ $data['message'] = 'Data Inserted Successfully';
 	    }
 	    else{
 	    	$msg = '<div class="alert alert-danger text-center">Oops! Error.  Please try again later!!!</div>';
+	    	$this->session->set_flashdata('msg', $msg);
 	 		redirect('Empleados/detalle_empleado/'.$empleado_id);
 	 		/*$this->load->view('head');
 			$this->load->view('navbar');

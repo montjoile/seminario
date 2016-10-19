@@ -17,7 +17,7 @@ class Usuario_model extends CI_Model {
         
 //		return $query->result();
 
-$this->db->select('id, nombre, apellidos, email, password');
+$this->db->select('id, nombre, apellidos, email, password, rol_id');
 $this->db->from('usuario');
 $this->db->where('email',$email);
 $this->db->where('password', $password);

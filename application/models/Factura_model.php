@@ -9,11 +9,33 @@ class Factura_model extends CI_Model {
     }
 
 
+    function getFacturasbyEmpresaID($empresaid){
+    	$this->db->select('*');
+    	$this->db->from('factura');
+    	$this->db->where('empresa_id', $empresaid);
+    	$query = $this->db->get();
+		return $query->result();
+    }
+
+
+
+    function getDetallebyEmpleadoID($empleado, $facturas){
+    	$this->db->select('*');
+    	$this->db->from('detalle_factura');
+    	//$this->db->where('factura_id', $factura_id);
+    	$this->db->where('empleado_id', $empleado);
+    	$this->db->where_in('factura_id', $facturas[0]->id);
+    	$query = $this->db->get();
+		return $query->result();
+    }
+
+
+
     function buildFactura($empleado){
     	$e = '<h1>huehuehue</h1>';
-    	$factura = 
-    		'
-USAR TABLAS EN LUGAR DE DIVs!!!!
+    	$factura = '
+
+
 
 			</pre><div class="row">
 			<div class="col-xs-6" style="position: relative;

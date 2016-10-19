@@ -9,7 +9,7 @@
                     <div class="col-lg-12">
                         <h1 class="page-header">
                             Generar Factura 
-                           </h1>   
+                        </h1>   
 
 
 
@@ -19,11 +19,11 @@
 
 
 
-<?php echo form_open('Start/generar_factura'); ?>
+<?php var_dump($empleados);///echo form_open('Start/generar_factura'); ?>
 
 
-<?php $search = array('name'=>'search','id'=>'search','value'=>'', 'placeholder' => 'Ingrese nombre de empleado ');?>
-<?=form_input($search);?>
+<?php //$search = array('name'=>'search','id'=>'search','value'=>'', 'placeholder' => 'Ingrese nombre de empleado ');?>
+
 
 
 <?php $months = array(
@@ -41,82 +41,199 @@
         '11'  => 'Noviembre',
         '12'  => 'Diciembre',
 )?>
-<?=form_dropdown('month', $months);?><input type=submit value='Generar Factura' /></p>
 
-<?=form_close();?>
+<!--<input type=submit value='Generar Factura' /></p>-->
 
-<?php if (isset($empleados)){ ?>
-<?php 
-    echo form_open("Start/imprimir_factura");
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<?php var_dump($empleados); //if (isset($empleados)){
+    echo form_open("Empleados/generar_factura/", "class='form-inline'");
 
     foreach($empleados as $empleado){
+
+        echo '<div>';
+        echo '<div class="form-group">
+                <label>ID</label>';
+
+        $atributes = array(        
+                            'name'      => 'dempleado',
+                            'id'        => 'dempleado',
+                            'value'     => $empleado->id,
+                            'size'     => '3',
+                            'readonly'  => 'readonly'
+                            );
+        echo form_input($atributes);
+
+
+        echo '</div>';
+        echo '<div class="form-group">';
+        echo '<label>Nombre</label>';
+        
+
         $atributes = array(        
                             'name'      => 'dnombre',
                             'id'        => 'dnombre',
                             'value'     => $empleado->nombre .' ' . $empleado->apellidos,
-                            //'maxlength' => '30',
-                            //'size'      => '30',
-                            //'style'     => 'width:30%',
                             'readonly'  => 'readonly'
                             );
         echo form_input($atributes);
+
+
+        echo '</div>';
+        echo '<div class="form-group">';
+        echo '<label>No. Contrato</label>';
         
+
+        $atributes = array(        
+                            'name'      => 'dcontrato',
+                            'id'        => 'dcontrato',
+                            'value'     => $empleado->contrato,
+                            'size'     => '3',
+                            'readonly'  => 'readonly'
+                            );
+        echo form_input($atributes);
+
+        echo '</div>';
+        echo '<div class="form-group">';
+        echo '<label>Profesion</label>';
+
         $atributes = array(        
                             'name'      => 'dprofesion',
                             'id'        => 'dprofesion',
                             'value'     => $empleado->profesion,
-                            //'maxlength' => '10',
-                            //'size'      => '10',
-                            //'style'     => 'width:10%',
                             'readonly'  => 'readonly'
                             );
         echo form_input($atributes);
+
+        echo '</div>';
+        echo '<div class="form-group">';
+        echo '<label>Salario</label>';
 
         $atributes = array(        
-                            'name'      => 'dnombre',
-                            'id'        => 'dnombre',
-                            'value'     => $empleado->nombre .' ' . $empleado->apellidos,
-                            'maxlength' => '30',
-                            'size'      => '30',
-                            'style'     => 'width:30%',
+                            'name'      => 'dsalario',
+                            'id'        => 'dsalario',
+                            'value'     => $empleado->salario,
+                            'size'      => '7',
                             'readonly'  => 'readonly'
                             );
         echo form_input($atributes);
+
+       
+
         echo "<input type=submit value='Generar Factura' />";
+        echo '</div>';
+
+        echo '<a href="#" id="c_facturar" onclick="toggle_visibility();"><i class="fa fa-pencil" aria-hidden="true"></i></a>';
+
     }
 
-    echo form_close();
+
+    
+
+    echo '<div>
+            <div class="span7">
+            <div class="panel panel-info" id="factura_div" style="display:none;">
+            <div class="panel-heading">
+            <h4> Generar Factura</h4> 
+            <div class=" panel-body ">
 
 
+            <div class="form-group-horizontal">
+                <label ">Mes</label>
+                     <select name="dmes" id="dmes">
+                          <option value=""></option>
+                          <option value="1">Enero</option>
+                          <option value="2">Febrero</option>
+                          <option value="3">Marzo</option>
+                          <option value="4">Abril</option>
+                          <option value="5">Mayo</option>
+                          <option value="6">Junio</option>
+                          <option value="7">Julio</option>
+                          <option value="8">Agosto</option>
+                          <option value="9">Septiembre</option>
+                          <option value="10">Octubre</option>
+                          <option value="11">Noviembre</option>
+                          <option value="12">Diciembre</option>
+                        </select> 
+
+                </div>
+
+
+
+
+            <div class="form-group-horizontal">
+                <label ">Concepto</label>
+                <input type="text" name="dconcepto" id="dconcepto" />
+
+            </div>
+
+            <label>Observaciones</label>
+                <textarea name="dobservaciones" id="dobservaciones" cols="40" rows="5"></textarea>
+
+            </div>
+            <div class="form-group">
+                <div>
+                  <input type=submit value="Generar Factura" class="btn btn-info" />';
+             echo form_reset('Cancelar', 'Cancelar', 'class="btn btn-danger"');
+             echo'   </div>
+              </div>
+            </div>
+            ';
 
 
 ?>
 
 
 
-
-<table>
-<tr><th>Nombre</th><th>Profesion</th><th>Fecha de contrato</th><th>Fecha de vigencia</th><th>Salario</th><th></th></tr>
-<?php foreach($empleados as $empleado):?>
-<tr>
-<!--<td><?//= $empleado->id ?></td>-->
-<td><?= $empleado->nombre . " " . $empleado->apellidos ?></td>
-<td><?= $empleado->profesion ?></td>
-<td><?= $empleado->fecha_contrato ?></td>
-<td><?= $empleado->fecha_vigencia ?></td>
-<td><?= $empleado->salario ?></td>
-<td><?= $empleado->id ?> </td>
-<td><a href="<?php echo site_url('Empleados/detalle_empleado').'/'.$empleado->id ?>"><i class="fa fa-print" aria-hidden="true"></i></a></td>
-
-</tr>
-<?php endforeach;?>
-</table>
-<?php } ?>
+<script type="text/javascript">
+<!--
+    function toggle_visibility(id) {
+       var e = document.getElementById('factura_div');
+       var f = document.getElementById('c_facturar');
+       if(e.style.display == 'block'){
+            e.style.display = 'none';
+            f.style.display = 'none';
+        }
+       else{
+          e.style.display = 'block';
+          f.style.display = 'none';
+       }
+    }
+//-->
+</script>
 
 
 
 
-</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
