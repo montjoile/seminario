@@ -13,7 +13,7 @@
                         
 
 
-<?php echo $this->session->flashdata('msg'); ?>    
+<?php //echo $this->session->flashdata('msg'); ?>    
 
 <?php //var_dump($empleados); 
 /*if (isset($msg)) { //echo $msg; 

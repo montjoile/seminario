@@ -33,4 +33,5 @@ class Empleador_model extends CI_Model {
 
 
 
+
 }
