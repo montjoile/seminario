@@ -31,6 +31,20 @@ class Empleador_model extends CI_Model {
     }
 
 
+    function update_empleador($id, $empleador){
+        $this->db->where('usuario_id', $id);
+        $this->db->update('empleador', $empleador); 
+    }
+
+
+    function getEmpleadorbyUser($usuario_id){
+        $this->db->select('*');
+        $this->db->from('empleador');
+        $this->db->where('usuario_id',$usuario_id);
+        $this->db->limit(1);
+        $query = $this->db->get();
+        return $query->result();
+    }
 
 
 

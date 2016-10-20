@@ -50,6 +50,8 @@ $this->form_validation->set_rules('demail', 'Email', 'required|valid_email|is_un
             $result = $this->Usuario_model->insert_usuario($data);
             if ($result != NULL){//$this->Usuario_model->insert_usuario($data)){
                 $this->session->set_flashdata('msg','<div class="alert alert-success text-center">You are Successfully Registered! Please login to access your Profile!</div>');
+
+                $this->session->set_flashdata('nuevoUsuario','si');
                 
                 //graba a tabla empleado
                 /*

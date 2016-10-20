@@ -237,8 +237,22 @@ IFNULL(ELT(FIELD(hijos, 0, 1),"No","Si"), "Sin especificar") AS hijos, e.edad, n
 
 
 
+    function update_empleado($id, $empleado){
+        $this->db->where('usuario_id', $id);
+        $this->db->update('empleado', $empleado); 
+    }
 
 
+
+
+  function getEmpleadobyUser($usuario_id){
+        $this->db->select('*');
+        $this->db->from('empleado');
+        $this->db->where('usuario_id',$usuario_id);
+        $this->db->limit(1);
+        $query = $this->db->get();
+        return $query->result();
+  }
 
 
 

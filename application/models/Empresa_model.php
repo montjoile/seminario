@@ -21,4 +21,12 @@ class Empresa_model extends CI_Model {
     }
 
 
+    function getEmpresas(){
+        $query = $this->db->query('SELECT id, nombre FROM empresa');
+        $result = $query->result_array();
+        return $result;
+
+    }
+
+
 }

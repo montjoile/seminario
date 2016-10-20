@@ -310,9 +310,6 @@ class Start extends CI_Controller {
 
 
 
-
-
-
 	function imprimir_factura($contentPDF){
  		$this->load->library('Pdf');
 
