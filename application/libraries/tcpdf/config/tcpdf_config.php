@@ -221,6 +221,7 @@ define('K_TCPDF_THROW_EXCEPTION_ERROR', false);
  * Default timezone for datetime functions
  */
 define('K_TIMEZONE', 'UTC');
+date_default_timezone_set('CET');
 
 //============================================================+
 // END OF FILE
