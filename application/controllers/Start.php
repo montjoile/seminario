@@ -77,7 +77,7 @@ class Start extends CI_Controller {
 
  		$user_rol = $this->session->userdata('rol');
  		//restringir vista a usuario empleador:
- 		if ($user_rol == 1){
+ 		if ($user_rol == 1 or $user_rol == NULL){
 			$this->load->view('head');
 			$this->load->view('navbar');
 			$this->load->view('menu');
@@ -140,7 +140,7 @@ class Start extends CI_Controller {
 
  		$user_rol = $this->session->userdata('rol');
  		//restringir vista a usuario empleador:
- 		if ($user_rol == 1){
+ 		if ($user_rol == 1 or $user_rol == NULL){
 			$this->load->view('head');
 			$this->load->view('navbar');
 			$this->load->view('menu');
@@ -183,7 +183,7 @@ class Start extends CI_Controller {
 
  		$user_rol = $this->session->userdata('rol');
  		//restringir vista a usuario empleador:
- 		if ($user_rol == 1){
+ 		if ($user_rol == 1 or $user_rol == NULL){
 			$this->load->view('head');
 			$this->load->view('navbar');
 			$this->load->view('menu');
