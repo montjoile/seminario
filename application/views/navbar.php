@@ -28,7 +28,7 @@
 
                                 }
                                 else{
-                                    var_dump($this->session->userdata('apellidos'));
+                                    
                                     if ($this->session->userdata('user')){ 
                                         /*echo "<small>". $this->session->userdata('nombre') . " " . 
                                         $this->session->userdata('apellidos') . "!</small>";*/

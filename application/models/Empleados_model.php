@@ -146,15 +146,14 @@ function getEmpleadobyEmpresa($empresaid){
 
   function getEmpleadobyID($id){
     $this->db->select('e.id as id, e.nombre as nombre, e.apellidos as apellidos, 
-e.telefono1, e.telefono2, e.celular, e.email, e.email2, e.direccion, e.nit, e.fecha_nacimiento, e.dpi, p.descripcion as profesion, e.pretension_salarial as pretension_salarial, g.descripcion as genero, es.descripcion as estado_civil,
-IFNULL(ELT(FIELD(hijos, 0, 1),"No","Si"), "Sin especificar") AS hijos, e.edad, nv.descripcion as nivel_estudios, pa.descripcion as pais_residencia, c.id as contrato, c.fecha_contrato as fecha_contrato');
-    $this->db->from('empleado e, profesion p, genero g, estado_civil es, nivel_estudios nv, pais pa, contrato c');
+e.telefono1, e.telefono2, e.celular, e.email, e.email2, e.direccion, e.nit, e.fecha_nacimiento, e.dpi, p.descripcion as profesion, e.pretension_salarial as pretension_salarial, g.descripcion as genero, nv.descripcion as nivel_estudios, pa.descripcion as pais_residencia');
+    $this->db->from('empleado e, profesion p, genero g, nivel_estudios nv, pais pa ');
     $this->db->where('e.profesion_id = p.id');
     $this->db->where('g.id = e.genero_id');
-    $this->db->where('es.id = e.estado_civil');
+    //$this->db->where('es.id = e.estado_civil');
     $this->db->where('nv.id = e.nivel_estudio_max');
     $this->db->where('pa.id = e.pais_residencia');
-    $this->db->where('c.empleado_id = e.id');
+    //$this->db->where('c.empleado_id = e.id');
     $this->db->where('e.id', $id);
     $this->db->group_by('e.id');
     $query = $this->db->get();
