@@ -69,10 +69,11 @@ echo form_open("");
 //echo $empleados;
 ?>
 
-<?php form_open('books/search');?>
-<?php $search = array('name'=>'search','id'=>'search','value'=>'',);?>
-<?=form_input($search);?><input type=submit value='Search' /></p>
-<?=form_close();?>
+<?php /*form_open('books/search');
+$search = array('name'=>'search','id'=>'search','value'=>'',);
+form_input($search);
+echo "<input type=submit value='Search' /></p>";
+form_close();*/?>
 <table>
 <tr><th>ID </th><th> Nombre </th><th> Apelllidos </th><th></th></tr>
 <?php foreach($query as $item):?>
@@ -80,7 +81,6 @@ echo form_open("");
 <td><?= $item->id ?></td>
 <td><?= $item->nombre ?></td>
 <td><?= $item->apellidos ?></td>
-<td><?= $item->profesion ?></td>
 <td><a href="<?php echo site_url('Empleados/detalle_empleado').'/'.$item->id ?>"><i class="fa fa-pencil-square-o" aria-hidden="true">Detalle</i></a></td>
 
 </tr>

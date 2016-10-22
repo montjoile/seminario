@@ -98,7 +98,7 @@ return $this->table->generate();
 
 function get_search() {
   //devuelve TODOS los empleados de la BD
-  $match = $this->input->post('search');
+  //$match = $this->input->post('search');
   /*$this->db->like('nombre',$match);
   $this->db->or_like('apellidos',$match);
   $query = $this->db->get('empleado');
@@ -106,10 +106,13 @@ function get_search() {
   $this->db->select('e.id as id, e.nombre as nombre, e.apellidos as apellidos, e.telefono1
     as telefono, e.email as email, e.edad as edad, e.nit as nit, e.status as status, e.direccion as direccion, e.usuario_id as usuario_id, e.pretension_salarial as pretension_salarial, p.descripcion as pais, g.descripcion as genero, pf.descripcion as profesion, nv.descripcion as nivel_estudios');
   $this->db->from('empleado e, pais p, genero g, profesion as pf, nivel_estudios as nv');
-  $this->db->where('p.id = e.id');
-  $this->db->where('g.id = e.id');
-  $this->db->where('pf.id = e.id');
-  $this->db->where('nv.id = e.id');
+  //$this->db->where('p.id = e.id');
+  //$this->db->where('g.id = e.id');
+  //$this->db->where('pf.id = e.id');
+  //$this->db->where('nv.id = e.id');
+
+  
+  $this->db->group_by('e.id');
   $query = $this->db->get();
   return $query->result();
 }
