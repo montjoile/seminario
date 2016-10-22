@@ -201,7 +201,7 @@ class Start extends CI_Controller {
 			$data['contratos'] = $this->Contrato_model->getContratobyEmpresa($empresaid);
 
 			//si no hay empleados contratados:
-			if ($data['contratos']!= null or $data['contratos'] == 0){
+			if ($data['contratos']== null or $data['contratos'] == 0){
 				$this->load->view('head');
 				$this->load->view('navbar');
 				$this->load->view('menu');
