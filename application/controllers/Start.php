@@ -155,17 +155,29 @@ class Start extends CI_Controller {
 			$empresaid = $data['empresa'][0]->empresa_id;
 			$data['contratos'] = $this->Contrato_model->getContratobyEmpresa($empresaid);
 
-			$empleados = array();
-			foreach ($data['contratos'] as $item) {
-				$empleados[] = $item->empleado_id;
+			//si no hay empleados contratados por empleador
+			if ($data['contratos'] == null or $data['contratos'] == 0){
+				$this->load->view('head');
+				$this->load->view('navbar');
+				$this->load->view('menu');
+				$this->load->view('start');
+				$this->load->view('js_plugins');
 			}
-			$data['empleados'] = $this->Empleados_model->getEmpleadosbyID($empleados);
 
-	 		$this->load->view('head');
-			$this->load->view('navbar');
-			$this->load->view('menu');
-	    	$this->load->view('gestionarEmpleados_view', $data);
-	    	$this->load->view('js_plugins');
+			else{
+
+				$empleados = array();
+				foreach ($data['contratos'] as $item) {
+					$empleados[] = $item->empleado_id;
+				}
+				$data['empleados'] = $this->Empleados_model->getEmpleadosbyID($empleados);
+
+		 		$this->load->view('head');
+				$this->load->view('navbar');
+				$this->load->view('menu');
+		    	$this->load->view('gestionarEmpleados_view', $data);
+		    	$this->load->view('js_plugins');
+		    }
 	    }
  	}
 
