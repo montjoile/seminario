@@ -146,36 +146,45 @@ $data['message'] = 'Data Inserted Successfully';
  		$this->load->library(array('session', 'form_validation'));
  		$this->load->helper('form');
  		$this->load->model('Empleados_model');
+ 		$this->load->model('Empleador_model');
  		$this->load->model('Contrato_model');
 
+		//trae datos de empleado seleccionado
 		$id =  $this->uri->segment(3);
-
-		//traer toda la info del empleado + contrato
-		//boton para generar factura por empleado
-		//contrato
-
-
 		$empleados = $this->Empleados_model->getEmpleadobyID($id);
 		$data['empleados'] = $empleados;
 
 
- 		//verificar si ya tiene contrato>
- 		  //buscar id contrato por empleado
- 		  //traer datos de contrato
- 		$contrato = $this->Contrato_model->getContratobyEmpleadoID($id);
- 		if ($contrato){
- 			$datos = $this->Contrato_model->getContratobyID($contrato);
- 			$data['contrato'] = $datos;
+		//restringir vista a usuario empleado:
+		$user_rol = $this->session->userdata('rol');
+ 		if ($user_rol == 1 or $user_rol == NULL){
+ 			$data['restringir']= 'si';//condicional para no mostrar boton de contratar
+ 			$this->load->view('head');
+			$this->load->view('navbar');
+			$this->load->view('menu');
+	    	$this->load->view('detalleEmpleado_view', $data);
+	    	$this->load->view('js_plugins');
  		}
 
 
+		else{
+			$user_id = $this->session->userdata('user');
+			$data['empresa']   =  $this->Empleador_model->getEmpresaId($user_id);
+			$empresaid         =  $data['empresa'][0]->empresa_id;
+
+	 		$contrato = $this->Contrato_model->getContratobyEmpleadoID($id, $empresaid);
+	 		if ($contrato){
+	 			$datos = $this->Contrato_model->getContratobyID($contrato);
+	 			$data['contrato'] = $datos;
+	 		}
 
 
-		$this->load->view('head');
-		$this->load->view('navbar');
-		$this->load->view('menu');
-    	$this->load->view('detalleEmpleado_view', $data);
-    	$this->load->view('js_plugins');
+			$this->load->view('head');
+			$this->load->view('navbar');
+			$this->load->view('menu');
+	    	$this->load->view('detalleEmpleado_view', $data);
+	    	$this->load->view('js_plugins');
+	    }
  	}
 
 

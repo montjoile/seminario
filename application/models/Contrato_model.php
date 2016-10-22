@@ -30,10 +30,11 @@ class Contrato_model extends CI_Model {
     }
 
 
-    function getContratobyEmpleadoID($id){
+    function getContratobyEmpleadoID($id, $empresaid){
         $this->db->select('id');
         $this->db->from('contrato');
         $this->db->where('empleado_id', $id);
+        $this->db->where('empresa_id', $empresaid);
         $query = $this->db->get();
         return $query->result();
     }

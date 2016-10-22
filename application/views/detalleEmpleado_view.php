@@ -13,9 +13,9 @@
                         
 
 
-<?php //echo $this->session->flashdata('msg'); ?>    
+<?php echo $this->session->flashdata('msg'); ?>    
 
-<?php //var_dump($empleados); 
+<?php //var_dump($empresa); 
 /*if (isset($msg)) { //echo $msg; 
 echo '<CENTER><h3 style="color:green;">Registro guardado con exito</h3></CENTER><br>';
  }*/ ?>
@@ -131,6 +131,7 @@ echo '<CENTER><h3 style="color:green;">Registro guardado con exito</h3></CENTER>
     else{
 
 
+if (!isset($restringir)){
 echo '<a href="#" id="c_contratar" onclick="toggle_visibility'."('contratar_div')".';">Contratar</a>
 
 </div></div>
@@ -174,7 +175,7 @@ echo '<a href="#" id="c_contratar" onclick="toggle_visibility'."('contratar_div'
 </div>
 <input type=submit value="Generar Contrato" class="btn btn-default" />';
 }
-
+}
 
 
 

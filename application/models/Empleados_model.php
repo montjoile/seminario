@@ -99,13 +99,21 @@ return $this->table->generate();
 function get_search() {
   //devuelve TODOS los empleados de la BD
   $match = $this->input->post('search');
-  $this->db->like('nombre',$match);
+  /*$this->db->like('nombre',$match);
   $this->db->or_like('apellidos',$match);
-  //$this->db->or_like(‘characters’,$match);
-  //$this->db->or_like(‘synopsis’,$match);
   $query = $this->db->get('empleado');
+  return $query->result();*/
+  $this->db->select('e.id as id, e.nombre as nombre, e.apellidos as apellidos, e.telefono1
+    as telefono, e.email as email, e.edad as edad, e.nit as nit, e.status as status, e.direccion as direccion, e.usuario_id as usuario_id, e.pretension_salarial as pretension_salarial, p.descripcion as pais, g.descripcion as genero, pf.descripcion as profesion, nv.descripcion as nivel_estudios');
+  $this->db->from('empleado e, pais p, genero g, profesion as pf, nivel_estudios as nv');
+  $this->db->where('p.id = e.id');
+  $this->db->where('g.id = e.id');
+  $this->db->where('pf.id = e.id');
+  $this->db->where('nv.id = e.id');
+  $query = $this->db->get();
   return $query->result();
 }
+
 
 function insert_empleado($data){
 // Inserting in Table(students) of Database(college)
@@ -147,7 +155,7 @@ function getEmpleadobyEmpresa($empresaid){
   function getEmpleadobyID($id){
     $this->db->select('e.id as id, e.nombre as nombre, e.apellidos as apellidos, 
 e.telefono1, e.telefono2, e.celular, e.email, e.email2, e.direccion, e.nit, e.fecha_nacimiento, e.dpi, p.descripcion as profesion, e.pretension_salarial as pretension_salarial, g.descripcion as genero, nv.descripcion as nivel_estudios, pa.descripcion as pais_residencia');
-    $this->db->from('empleado e, profesion p, genero g, nivel_estudios nv, pais pa ');
+    $this->db->from('empleado e, profesion p, genero g, nivel_estudios nv, pais pa');
     $this->db->where('e.profesion_id = p.id');
     $this->db->where('g.id = e.genero_id');
     //$this->db->where('es.id = e.estado_civil');

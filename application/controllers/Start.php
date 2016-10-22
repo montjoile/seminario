@@ -140,7 +140,7 @@ class Start extends CI_Controller {
 
 
  		$user_rol = $this->session->userdata('rol');
- 		//restringir vista a usuario empleador:
+ 		//restringir vista a usuario empleado:
  		if ($user_rol == 1 or $user_rol == NULL){
 			$this->load->view('head');
 			$this->load->view('navbar');
