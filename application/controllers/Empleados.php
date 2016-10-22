@@ -221,8 +221,7 @@ $data['message'] = 'Data Inserted Successfully';
  		$result = $this->Empleados_model->contratarEmpleado($info);
 
  		if ($result != NULL){
-            $msg = '<div class="alert alert-success text-center">You are Successfully Registered! Please login to access your Profile!</div>';
-            $this->session->set_flashdata('msg','<div class="alert alert-success text-center">You are Successfully Registered! Please login to access your Profile!</div>');
+            $this->session->set_flashdata('msg','<div class="alert alert-success text-center">Contrato generado exitosamente</div>');
 
             redirect('Empleados/detalle_empleado/'.$empleado_id);
 	 		/*$this->load->view('head');
@@ -232,7 +231,7 @@ $data['message'] = 'Data Inserted Successfully';
 	    	$this->load->view('js_plugins');*/
 	    }
 	    else{
-	    	$msg = '<div class="alert alert-danger text-center">Oops! Error.  Please try again later!!!</div>';
+	    	$msg = '<div class="alert alert-danger text-center">Ocurrio un error. Intentar de nuevo mas tarde</div>';
 	    	$this->session->set_flashdata('msg', $msg);
 	 		redirect('Empleados/detalle_empleado/'.$empleado_id);
 	 		/*$this->load->view('head');
