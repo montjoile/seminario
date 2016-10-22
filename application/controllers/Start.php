@@ -20,7 +20,8 @@ class Start extends CI_Controller {
 	 */
 	public function index(){
 		$this->load->helper('url');
-
+		$this->load->library('session');
+		
 		$this->load->view('head');
 		$this->load->view('navbar');
 		$this->load->view('menu');

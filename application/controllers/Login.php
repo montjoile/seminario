@@ -107,6 +107,11 @@ class Login extends CI_Controller {
         $this->load->model('Usuario_model');
         $this->load->model('Empresa_model');
         $this->load->model('Empleador_model');
+        $this->load->model('Genero_model');
+        $this->load->model('Pais_model');
+        $this->load->model('Profesion_model');
+        $this->load->model('NivelEstudios_model');
+
 
         if($_SERVER['REQUEST_METHOD'] == "POST"){
 
@@ -130,7 +135,7 @@ class Login extends CI_Controller {
                     $this->load->view('login_view');
                 }
                 
-                else{
+    /**/            else{
                     $user_id = $this->session->userdata('user');
                     $this->Empleador_model->update_empleador($user_id, $empleador);
 
@@ -152,7 +157,7 @@ class Login extends CI_Controller {
                 $empleado = array(
                     'DPI'                  =>  $this->input->post("ddpi"),
                     'direccion'            =>  $this->input->post("ddireccion"),
-                    'telefono'             =>  $this->input->post("dtelefono"),
+                    'telefono1'            =>  $this->input->post("dtelefono"),
                     'celular'              =>  $this->input->post("dcelular"),
                     'genero_id'            =>  $this->input->post("dgenero"),
                     'pais_residencia'      =>  $this->input->post("dpais"),
@@ -164,7 +169,7 @@ class Login extends CI_Controller {
                 // form validation
                 $this->form_validation->set_rules("dtelefono", "Telefono", "numeric|max_length[10]");
                 $this->form_validation->set_rules("dcelular", "Celular", "numeric|max_length[10]");
-                $this->form_validation->set_rules("dpretension", "Pretension Salarial", "numeric|max_length[10]");
+                //$this->form_validation->set_rules("dpretension", "Pretension Salarial", "numeric|max_length[10]");
 
                 if ($this->form_validation->run() == FALSE){
                     // validation fail
@@ -173,10 +178,15 @@ class Login extends CI_Controller {
                 
                 else{
                     $user_id = $this->session->userdata('user');
-                    $this->Empleador_model->update_empleado($user_id, $empleado);
+                    $this->Empleados_model->update_empleado($user_id, $empleado);
 
                     //$data['em']  = $this->Empresa_model->getEmpresas();
-                    $data['empleador'] = $this->Empleador_model->getEmpleadobyUser($user_id);
+                    $data['empleado'] = $this->Empleados_model->getEmpleadobyUser($user_id);
+                    $data['empleado']       =  $this->Empleados_model->getEmpleadobyUser($user_id);
+                $data['genero']         =  $this->Genero_model->getGenero();
+                $data['profesion']      =  $this->Profesion_model->getProfesion();
+                $data['pais']           =  $this->Pais_model->getPais();
+                $data['nivel_estudios'] =  $this->NivelEstudios_model->getNivelEstudios();
 
                             $this->load->view('head');
                             $this->load->view('navbar');
@@ -208,7 +218,12 @@ class Login extends CI_Controller {
             }
             else{
                 $user_id = $this->session->userdata('user');
-                    $data['empleador'] = $this->Empleador_model->getEmpleadobyUser($user_id);
+                $data['empleado']       =  $this->Empleados_model->getEmpleadobyUser($user_id);
+                $data['genero']         =  $this->Genero_model->getGenero();
+                $data['profesion']      =  $this->Profesion_model->getProfesion();
+                $data['pais']           =  $this->Pais_model->getPais();
+                $data['nivel_estudios'] =  $this->NivelEstudios_model->getNivelEstudios();
+                   
 
                             $this->load->view('head');
                             $this->load->view('navbar');
