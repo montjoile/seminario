@@ -49,4 +49,18 @@ class Contrato_model extends CI_Model {
     }
 
 
+
+    function calcularComisiones(){
+        $this->db->select("sum(comision) as comision, sum(iva) as iva, sum(salario) as salario, IFNULL(ELT(FIELD(mes,
+       1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12),'Enero','Febrero','Marzo','Abril',
+       'Mayo','Junio','Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'),
+       'Sin especificar') AS mes");
+        $this->db->from('detalle_factura');
+        $this->db->group_by('mes');
+        $query = $this->db->get();
+        return $query->result();
+    }
+
+
+
 }

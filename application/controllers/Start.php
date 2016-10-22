@@ -156,6 +156,7 @@ class Start extends CI_Controller {
 			$data['contratos'] = $this->Contrato_model->getContratobyEmpresa($empresaid);
 
 			//si no hay empleados contratados por empleador
+			var_dump($data['contratos']);
 			if ($data['contratos'] == null or $data['contratos'] == 0){
 				$this->load->view('head');
 				$this->load->view('navbar');
@@ -180,6 +181,28 @@ class Start extends CI_Controller {
 		    }
 	    }
  	}
+
+
+
+ 	function ganancias(){
+ 		$this->load->helper('url');
+ 		$this->load->helper('form');
+ 		$this->load->library('session');
+ 		$this->load->model('Empleador_model');
+ 		$this->load->model('Empleados_model');
+ 		$this->load->model('Contrato_model');
+ 		$this->load->model('Factura_model');
+ 		$this->load->model('Empresa_model');
+
+ 		$data['ganancias'] = $this->Contrato_model->calcularComisiones();
+ 		$this->load->view('head');
+		$this->load->view('navbar');
+		$this->load->view('menu');
+		$this->load->view('ganancias_view', $data);
+		$this->load->view('js_plugins');
+
+ 	}
+
 
 
 

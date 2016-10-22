@@ -20,6 +20,9 @@
                         <a href="<?php echo site_url('start/requerir_empleados')?>"><i class="fa fa-fw fa-desktop"></i> Requisicion de personal</a>
                     </li>
                     <li>
+                        <a href="<?php echo site_url('start/ganancias')?>"><i class="fa fa-fw fa-desktop"></i> Consultar Comisiones</a>
+                    </li>
+                    <li>
                         <a href="<?php echo base_url(); ?>assets/documentacion.pdf"><i class="fa fa-fw fa-desktop"></i> Documentación técnica</a>
                     </li>                    
                     
